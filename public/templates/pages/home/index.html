@@ -1,1 +1,57 @@
-<div>{{message}}</div>
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-md-12 text-center siteHeadline"><h1>Web Scrapper Test</h1></div>
+    </div>
+    
+    <div class="row">
+        <form class="text-center" ng-submit="scrapUrl()">
+            <div class="col-md-10">
+                <input class="form-control" type="text" ng-model="url">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" type="submit" ng-disabled="inProgress">
+                    <span ng-hide="inProgress">Scrap</span>
+                    <span ng-show="inProgress">Scrapping <span class="fa fa-spinner fa-spin"></span></span>
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-10">
+            <div class="alert alert-danger" ng-show="hasError"><strong>Error:</strong> Could not scrap URL.</div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12"><h2>Text Results:</h2></div>
+    </div>
+
+    <div class="row" >
+        <div class="col-md-4" ng-repeat="text in textResults track by $index">
+            <div class="thumbnail">{{text}}</div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12" ng-hide="textResults.length">No text results to display.</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><h2>Image Results:</h2></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4" ng-repeat="image in imageResults track by $index">
+            <div class="thumbnail">
+                <img  ng-src={{image}} />
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12" ng-hide="imageResults.length">No image results to display.</div>
+    </div>
+</div>

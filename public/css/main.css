@@ -1,0 +1,20 @@
+body {
+    margin: 0 10%;
+}
+
+.siteHeadline {
+    margin-bottom: 30px;
+}
+
+.textResultWrap {
+    padding-bottom: 20px;
+}
+
+.imageList {
+    display: inline-block;
+}
+
+.imgResultWrap {
+    text-align: center;
+    padding-bottom: 20px;
+}

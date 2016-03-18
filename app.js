@@ -14,7 +14,8 @@ app.use(express.static(__dirname + '/public'));
 
 // JSON API
 app.get('/api/test', api.test);
-app.get('/api/scraptext', api.scraptext);
+app.get('/api/scrapText', api.scrapText);
+app.get('/api/scrapImages', api.scrapImages)
 
 
 // Catch All Route

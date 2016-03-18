@@ -13,8 +13,9 @@ exports.test = function (req, res) {
     });
 };
 
-exports.scraptext = function (req, res) {
+exports.scrapText = function (req, res) {
     var url = req.query.url;
+    
     x(url, ['p'])(function (err, obj){
         for (var i = obj.length; i--;) {
             if(obj[i] === "") {
@@ -23,7 +24,16 @@ exports.scraptext = function (req, res) {
                 obj[i] = obj[i].trim();
             }
         };
-    res.setHeader('Content-Type', 'application/json');
-    res.send(obj);
+        res.setHeader('Content-Type', 'application/json');
+        res.send(obj);
+    });
+};
+
+exports.scrapImages = function (req, res) {
+    var url = req.query.url;
+    
+    x(url, ['img@src'])(function (err, obj){
+        res.setHeader('Content-Type', 'application/json');
+        res.send(obj);
     });
 };
