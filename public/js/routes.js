@@ -1,4 +1,4 @@
-angular.module('angdev').config(['$routeProvider', function($routeProvider) {
+angular.module('angdev').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
         redirectTo: '/home'
@@ -9,5 +9,9 @@ angular.module('angdev').config(['$routeProvider', function($routeProvider) {
         controller: 'HomeIndexController'
     })
     
-    .otherwise({redirectTo: '/'});
+    .otherwise({
+        redirectTo: '/'}
+    );
+    
+    $locationProvider.html5Mode(true);
 }])
