@@ -17,6 +17,9 @@ exports.scrapText = function (req, res) {
     var url = req.query.url;
     
     x(url, ['p'])(function (err, obj){
+        if (obj == null)
+            obj = [];
+        
         for (var i = obj.length; i--;) {
             if(obj[i] === "") {
                 obj.splice(i, 1);
@@ -33,6 +36,9 @@ exports.scrapImages = function (req, res) {
     var url = req.query.url;
     
     x(url, ['img@src'])(function (err, obj){
+        if (obj == null)
+            obj = [];
+        
         res.setHeader('Content-Type', 'application/json');
         res.send(obj);
     });
