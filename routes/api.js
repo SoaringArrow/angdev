@@ -1,6 +1,8 @@
 'use strict';
 
 var Xray = require('x-ray');
+var scrapData = require('../data_access/scrap-results');
+
 var x = Xray();
 
 /*
@@ -42,4 +44,16 @@ exports.scrapImages = function (req, res) {
         res.setHeader('Content-Type', 'application/json');
         res.send(obj);
     });
+};
+
+exports.insertScrapResult = function (req, res) {
+    scrapData.insert(req.body);
+    res.send(req.body);
+};
+
+exports.getAllScrapResults = function (req, res) {
+    if(req.query.name == null)
+        scrapData.queryAll(res);
+    else
+        scrapData.get(req.query.name, res);
 };

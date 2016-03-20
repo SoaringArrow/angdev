@@ -11,9 +11,9 @@
                 <input class="form-control" type="text" ng-model="url">
             </div>
             <div class="col-md-2">
-                <button class="btn btn-primary" type="submit" ng-disabled="inProgress">
-                    <span ng-hide="inProgress">Scrap</span>
-                    <span ng-show="inProgress">Scrapping <span class="fa fa-spinner fa-spin"></span></span>
+                <button class="btn btn-primary" type="submit" ng-disabled="scrapInProgress">
+                    <span ng-hide="scrapInProgress">Scrap</span>
+                    <span ng-show="scrapInProgress">Scrapping... <span class="fa fa-spinner fa-spin"></span></span>
                 </button>
             </div>
         </form>
@@ -22,6 +22,36 @@
     <div class="row">
         <div class="col-md-10">
             <div class="alert alert-danger" ng-show="hasError"><strong>Error:</strong> Could not scrap URL.</div>
+        </div>
+    </div>
+    
+    <div class="row save-load-section">
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">Save/Load Scraps</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form class="form-inline" ng-submit="saveScrap()">
+                                <label for="scrapResultName">Name</label>
+                                <input type="text" class="form-control" id="scrapResultName" ng-model="saveName" ng-focus="saveConfirm = false">
+                                <button class="btn btn-default" ng-disabled="saveInProgress">
+                                    <span ng-hide="saveInProgress">Save</span>
+                                    <span ng-show="saveInProgress">Saving... <span class="fa fa-spinner fa-spin"></span></span>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+                            <dev-loadlist list-items="savedResults" load-scrap="loadScrap(name)"></dev-loadlist>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="save-confirmation" ng-show="saveConfirm">
+                            <div class="alert alert-success col-md-6"><span class="fa fa-check"></span><strong> Saved!</strong>  This scrap has been saved.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     

@@ -18,3 +18,17 @@ body {
     text-align: center;
     padding-bottom: 20px;
 }
+
+.save-load-section {
+    margin-top: 20px;
+}
+
+.save-confirmation {
+    padding: 10px;
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+}
+
+.save-confirmation.ng-hide {
+    opacity: 0;
+}

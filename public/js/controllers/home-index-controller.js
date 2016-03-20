@@ -1,12 +1,25 @@
-angular.module('angdev').controller('HomeIndexController', function($scope, Scrapper) {
+angular.module('angdev').controller('HomeIndexController', function($scope, Scrapper, ScrapResult) {
     $scope.url = "";
     $scope.textResults = [];
     $scope.imageResults = [];
-    $scope.inProgress = false;
+    $scope.savedResults = [];
+    $scope.scrapInProgress = false;
+    $scope.saveInProgress = false;
     $scope.hasError = false;
+    $scope.saveName = "";
+    $scope.saveConfirm = false;
+    
+    var updateSavedResults = function() {
+      var results = ScrapResult.query(function() {
+          $scope.savedResults = results;
+      })  
+    };
+    
+    
+    updateSavedResults();
     
     $scope.scrapUrl = function() {
-        $scope.inProgress = true;
+        $scope.scrapInProgress = true;
         $scope.hasError = false;
         $scope.textResults = [];
         $scope.imageResults = [];
@@ -19,10 +32,10 @@ angular.module('angdev').controller('HomeIndexController', function($scope, Scra
             isTextDone = true;
             
             if(isTextDone && isImagesDone)
-                $scope.inProgress = false;
+                $scope.scrapInProgress = false;
         }).error(function() {
             $scope.hasError = true;
-            $scope.inProgress = false;
+            $scope.scrapInProgress = false;
             
         });
         
@@ -32,10 +45,35 @@ angular.module('angdev').controller('HomeIndexController', function($scope, Scra
             isImagesDone = true;
             
             if(isTextDone && isImagesDone)
-                $scope.inProgress = false;
+                $scope.scrapInProgress = false;
         }).error(function() {
             $scope.hasError = true;
-            $scope.inProgress = false;
+            $scope.scrapInProgress = false;
+        });
+    };
+    
+    $scope.saveScrap = function() {
+        $scope.saveInProgress = true;
+        $scope.saveConfirm = false;
+        var scrapResult = new ScrapResult();
+        
+        scrapResult.name = $scope.saveName
+        scrapResult.siteUrl = $scope.url;
+        scrapResult.scrapText = $scope.textResults;
+        scrapResult.scrapImages = $scope.imageResults;
+        
+        scrapResult.$save();
+        updateSavedResults();
+        
+        $scope.saveInProgress = false;
+        $scope.saveConfirm = true;
+    };
+    
+    $scope.loadScrap = function(savedName) {
+        ScrapResult.get({name: savedName}, function(result) {
+            $scope.url = result.stieUrl;
+            $scope.textResults = result.scrapText;
+            $scope.imageResults = result.scrapImages;
         });
     };
 });
