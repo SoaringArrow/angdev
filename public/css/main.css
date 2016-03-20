@@ -32,3 +32,7 @@ body {
 .save-confirmation.ng-hide {
     opacity: 0;
 }
+
+.load-item {
+    cursor: pointer;
+}
