@@ -16,10 +16,13 @@ app.use(express.static(__dirname + '/public'));
 
 // JSON API
 app.get('/api/test', api.test);
+
 app.get('/api/scrap-text', api.scrapText);
 app.get('/api/scrap-images', api.scrapImages);
+
 app.post('/api/scrap-results', api.insertScrapResult);
 app.get('/api/scrap-results', api.getAllScrapResults);
+app.get('/api/scrap-results/:id', api.getScrapResult);
 
 
 // Catch All Route

@@ -4,6 +4,6 @@
         <span class="caret"></span>
     </button>
     <ul uib-dropdown role="menu" class="dropdown-menu" aria-labelledby="load-query">
-        <li role="menuitem" ng-repeat="item in listItems track by $index"><a class="load-item" ng-click="loadScrap({name: item})">{{item}}</a></li>
+        <li role="menuitem" ng-repeat="item in listItems track by $index"><a class="load-item" ng-click="loadScrap({id: item._id})">{{item.name}}</a></li>
     </ul>
 </div>

@@ -52,8 +52,12 @@ exports.insertScrapResult = function (req, res) {
 };
 
 exports.getAllScrapResults = function (req, res) {
-    if(req.query.name == null)
         scrapData.queryAll(res);
-    else
-        scrapData.get(req.query.name, res);
+};
+
+exports.getScrapResult = function (req, res) {
+    if (req.params.id == null)
+        return;
+    
+    scrapData.get(req.params.id, res);
 };

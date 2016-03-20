@@ -34,21 +34,16 @@ exports.queryAll = function (res) {
     ScrapResult.find({})
     .select('name')
     .exec(function (err, results) {
-        var names = [];
         if (err)
             return err;
         
-        for(var i = results.length; i--;) {
-            names.push(results[i].name);
-        }
-        
-        res.send(names);
+        res.send(results);
         
     });
 };
 
-exports.get = function(savedName, res) {
-    ScrapResult.find({'name': savedName }, function(err, result) {
+exports.get = function(id, res) {
+    ScrapResult.find({'_id': id }, function(err, result) {
         if (err)
             return err;
         

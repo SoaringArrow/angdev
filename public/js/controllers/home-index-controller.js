@@ -69,8 +69,8 @@ angular.module('angdev').controller('HomeIndexController', function($scope, Scra
         $scope.saveConfirm = true;
     };
     
-    $scope.loadScrap = function(savedName) {
-        ScrapResult.get({name: savedName}, function(result) {
+    $scope.loadScrap = function(id) {
+        ScrapResult.get({id: id}, function(result) {
             $scope.url = result.stieUrl;
             $scope.textResults = result.scrapText;
             $scope.imageResults = result.scrapImages;
